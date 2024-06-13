@@ -1,11 +1,10 @@
 package com.github.backend_1st.web.controller;
 
-import com.github.backend_1st.service.CreatePostService;
-import com.github.backend_1st.service.GetPostService;
-import com.github.backend_1st.service.UpdatePostService;
+import com.github.backend_1st.service.postService.CreatePostService;
+import com.github.backend_1st.service.postService.GetPostService;
+import com.github.backend_1st.service.postService.UpdatePostService;
 import com.github.backend_1st.web.dto.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

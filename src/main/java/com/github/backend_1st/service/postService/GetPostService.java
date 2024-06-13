@@ -1,4 +1,4 @@
-package com.github.backend_1st.service;
+package com.github.backend_1st.service.postService;
 
 import com.github.backend_1st.repository.posts.GetPostJpaRepository;
 import com.github.backend_1st.repository.posts.PostEntity;

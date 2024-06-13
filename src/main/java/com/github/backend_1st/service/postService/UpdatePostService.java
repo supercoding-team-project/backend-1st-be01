@@ -1,9 +1,8 @@
-package com.github.backend_1st.service;
+package com.github.backend_1st.service.postService;
 
 import com.github.backend_1st.repository.posts.GetPostJpaRepository;
 import com.github.backend_1st.repository.posts.PostEntity;
 import com.github.backend_1st.repository.users.UserJpaRepository;
-import com.github.backend_1st.service.mapper.CreatePostMapper;
 import com.github.backend_1st.web.dto.UpdatePost;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;

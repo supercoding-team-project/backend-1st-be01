@@ -1,4 +1,4 @@
-package com.github.backend_1st.service;
+package com.github.backend_1st.service.postService;
 
 import com.github.backend_1st.repository.posts.GetPostJpaRepository;
 import com.github.backend_1st.repository.posts.PostEntity;
@@ -6,12 +6,9 @@ import com.github.backend_1st.repository.users.UserEntity;
 import com.github.backend_1st.repository.users.UserJpaRepository;
 import com.github.backend_1st.service.mapper.CreatePostMapper;
 import com.github.backend_1st.web.dto.CreatePost;
-import jakarta.persistence.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
