@@ -67,4 +67,16 @@ public class CommentService {
             return "댓글 수정 중 오류가 발생했습니다.";
         }
     }
+
+    public String deleteComment(String id) {
+        Integer idInt = Integer.valueOf(id);
+        try {
+            commentJpaRepository.deleteById(idInt);
+            String result = "댓글이 성공적으로 삭제되었습니다.";
+            return result;
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            return "댓글 삭제 중 오류가 발생했습니다.";
+        }
+    }
 }
