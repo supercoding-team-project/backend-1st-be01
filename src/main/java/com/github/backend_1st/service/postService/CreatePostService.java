@@ -20,40 +20,14 @@ public class CreatePostService {
     private  final UserJpaRepository userJpaRepository;
     private final GetPostJpaRepository getPostJpaRepository;
 
-    //userEntity : id, email, password, nickname
-    //id, user, content, title, createAt
-    //createPost타입에서 PostEntity로 바꿔 저장
-    public void savePost(CreatePost createPost) { //title, content, author
+    public void savePost(CreatePost createPost) {
         //작성자로 유저정보 가저오기
         Optional<UserEntity> userEntity = userJpaRepository.findByEmail(createPost.getAuthor());
         UserEntity userFound = userEntity.get();
-        String title = createPost.getTitle();
-        String content = createPost.getContent();
-        PostEntity postEntity = CreatePostMapper.INSTANSE.idAndCreatePostToPostEntity(null,userFound,title,content);
+        PostEntity postEntity = CreatePostMapper.INSTANSE.idAndCreatePostToPostEntity(createPost);
+        postEntity.setUser(userFound);
         log.info("PostEntity - ID: {}, User: {}, Title: {}, Content: {}", postEntity.getId(), postEntity.getUser(), postEntity.getTitle(), postEntity.getContent());
-
-        //id, 시간, user(author -> userEntity)
-        // null,   //id=5, email= hoi     //title        //content
 
         getPostJpaRepository.save(postEntity);
     }
 }
-
-//PostEntity postEntity = CreatePostMapper.INSTANSE.idAndCreatePostToPostEntity(1,createPost);
-
-//@Id
-//@Column(name = "id") @GeneratedValue(strategy = GenerationType.IDENTITY)
-//private Integer id;
-//
-//@ManyToOne(fetch = FetchType.LAZY)
-//@JoinColumn(name = "user_id")
-//private UserEntity user;
-//
-//@Column(name = "title", length = 100)
-//private String title;
-//
-//@Column(name="content", length = 1000)
-//private String content;
-//
-//@Column(name = "created_at")
-//private LocalDateTime createdAt;
