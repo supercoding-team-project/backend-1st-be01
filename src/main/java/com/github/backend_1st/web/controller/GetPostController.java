@@ -62,5 +62,4 @@ public class GetPostController {
         updatePostService.updatePost(id, updatePost);
         return ResponseEntity.ok(new PostResponse("게시물이 성공적으로 수정되었습니다."));
     }
-
 }

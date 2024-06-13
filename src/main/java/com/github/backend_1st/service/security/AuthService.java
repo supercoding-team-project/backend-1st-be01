@@ -8,7 +8,7 @@ import com.github.backend_1st.repository.userPrincipal.UserPrincipalRepository;
 import com.github.backend_1st.repository.userPrincipal.UserPrincipalRoles;
 import com.github.backend_1st.repository.userPrincipal.UserPrincipalRolesRepository;
 import com.github.backend_1st.repository.users.UserEntity;
-import com.github.backend_1st.repository.users.UserRepository;
+import com.github.backend_1st.repository.users.UserJpaRepository;
 import com.github.backend_1st.web.dto.auth.LoginDTO;
 import com.github.backend_1st.web.dto.auth.SignUpDTO;
 import com.github.backend_1st.web.dto.auth.TokenDTO;
@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 public class AuthService {
     private final UserPrincipalRepository userPrincipalRepository;
     private final UserPrincipalRolesRepository userPrincipalRolesRepository;
-    private final UserRepository userRepository;
+    private final UserJpaRepository userRepository;
     private final RolesRepository rolesRepository;
     private final PasswordEncoder passwordEncoder;
 
