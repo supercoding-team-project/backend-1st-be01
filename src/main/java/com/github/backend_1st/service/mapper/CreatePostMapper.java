@@ -17,18 +17,14 @@ import org.mapstruct.factory.Mappers;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-//@Mapper(componentModel = "spring", uses = {UserMapperHelper.class})
 @Mapper
 public interface CreatePostMapper {
 
     CreatePostMapper INSTANSE = Mappers.getMapper(CreatePostMapper.class);
 
-//    @Mapping(target = "user.email", source = "createPost.author", qualifiedByName = "authorToEmail")
-    //@Mapping(target = "user.email", source = "createPost.author")
     @Mapping(target = "createdAt", expression = "java(java.time.LocalDateTime.now())")
-    @Mapping(target = "user", source = "userEntity")
-    PostEntity idAndCreatePostToPostEntity(Integer id , UserEntity userEntity, String title, String content);
-                                          // null,   //id=5, email= hoi     //title        //content
+    @Mapping(target = "user.email", source = "author")
+    PostEntity idAndCreatePostToPostEntity(CreatePost createPost);
 }
 
 
