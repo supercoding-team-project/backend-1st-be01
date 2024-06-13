@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,9 +31,9 @@ public class GetPostService {
 
     public List<GetPost> findPostByEmail(String email) {
         //이메일로 유저 가져오기
-        UserEntity userEntity = userJpaRepository.findByEmail(email);
+        Optional<UserEntity> userEntity = userJpaRepository.findByEmail(email);
         //유저 아이디로 포스트 가져오기
-        List<PostEntity> postEntities = getPostJpaRepository.findByUserId(userEntity.getId()); //JWT에서 가져오기
+        List<PostEntity> postEntities = getPostJpaRepository.findByUserId(userEntity.get().getId()); //JWT에서 가져오기
 
         return postEntities.stream().map(GetPostMapper.INSTANCE::postEntityToPost).collect(Collectors.toList());
     }

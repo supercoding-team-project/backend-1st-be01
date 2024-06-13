@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -23,11 +25,11 @@ public class CreatePostService {
     //createPost타입에서 PostEntity로 바꿔 저장
     public void savePost(CreatePost createPost) { //title, content, author
         //작성자로 유저정보 가저오기
-        UserEntity userEntity = userJpaRepository.findByEmail(createPost.getAuthor());
-        log.info("UserEntity - ID: {}, Email: {}, Nickname: {}", userEntity.getId(), userEntity.getEmail(),userEntity.getNickName());
+        Optional<UserEntity> userEntity = userJpaRepository.findByEmail(createPost.getAuthor());
+        UserEntity userFound = userEntity.get();
         String title = createPost.getTitle();
         String content = createPost.getContent();
-        PostEntity postEntity = CreatePostMapper.INSTANSE.idAndCreatePostToPostEntity(null,userEntity,title,content);
+        PostEntity postEntity = CreatePostMapper.INSTANSE.idAndCreatePostToPostEntity(null,userFound,title,content);
         log.info("PostEntity - ID: {}, User: {}, Title: {}, Content: {}", postEntity.getId(), postEntity.getUser(), postEntity.getTitle(), postEntity.getContent());
 
         //id, 시간, user(author -> userEntity)
