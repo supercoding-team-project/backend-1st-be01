@@ -15,6 +15,7 @@ import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 //@Mapper(componentModel = "spring", uses = {UserMapperHelper.class})
 @Mapper
@@ -26,33 +27,9 @@ public interface CreatePostMapper {
     //@Mapping(target = "user.email", source = "createPost.author")
     @Mapping(target = "createdAt", expression = "java(java.time.LocalDateTime.now())")
     @Mapping(target = "user", source = "userEntity")
-    PostEntity idAndCreatePostToPostEntity(Integer id ,UserEntity userEntity, String title, String content);
+    PostEntity idAndCreatePostToPostEntity(Integer id , UserEntity userEntity, String title, String content);
                                           // null,   //id=5, email= hoi     //title        //content
 }
 
-//private String title;
-//private String content;
-//private String author;
-
-//userEntity
-//private Integer id;
-//
-//private String email;
-//
-//private String password;
-//
-//private String nickName;
-
-
-//PostEntity
-//private Integer id;
-
-//private UserEntity user;
-//
-//private String title;
-//
-//private String content;
-//
-//private LocalDateTime createdAt;
 
 

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,8 +22,8 @@ public class CommentService {
 
     public Integer findUserIdByEmail(CommentBody commentBody){
         String userEmail = commentBody.getAuthor();
-        UserEntity user = userJpaRepository.findByEmail(userEmail);
-        return user != null ? user.getId() : null;
+        Optional<UserEntity> user = userJpaRepository.findByEmail(userEmail);
+        return user != null ? user.get().getId() : null;
     }
     public List<Comment> findAllComment() {
         List<CommentEntity> commentEntities = commentJpaRepository.findAll();
