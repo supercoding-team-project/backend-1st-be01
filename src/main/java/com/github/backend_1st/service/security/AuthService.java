@@ -10,6 +10,7 @@ import com.github.backend_1st.repository.userPrincipal.UserPrincipalRolesReposit
 import com.github.backend_1st.repository.users.UserEntity;
 import com.github.backend_1st.repository.users.UserJpaRepository;
 import com.github.backend_1st.web.dto.auth.LoginDTO;
+import com.github.backend_1st.web.dto.auth.LogoutDTO;
 import com.github.backend_1st.web.dto.auth.SignUpDTO;
 import com.github.backend_1st.web.dto.auth.TokenDTO;
 import lombok.RequiredArgsConstructor;
@@ -105,5 +106,16 @@ public class AuthService {
             e.printStackTrace();
             throw new RuntimeException("로그인 할 수 없습니다.");
         }
+    }
+
+    public Map<String, String> logout(LogoutDTO logoutDTO) {
+        Map<String, String> messageMap = new HashMap<>();
+        String email = logoutDTO.getEmail();
+
+        if(!userPrincipalRepository.existsByEmail(email))
+            throw new RuntimeException("유저를 찾을 수 없습니다.");
+
+        messageMap.put("message", "로그아웃되었습니다.");
+        return messageMap;
     }
 }

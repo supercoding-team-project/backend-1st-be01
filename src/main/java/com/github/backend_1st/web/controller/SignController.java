@@ -3,6 +3,7 @@ package com.github.backend_1st.web.controller;
 import com.github.backend_1st.config.security.JwtTokenProvider;
 import com.github.backend_1st.service.security.AuthService;
 import com.github.backend_1st.web.dto.auth.LoginDTO;
+import com.github.backend_1st.web.dto.auth.LogoutDTO;
 import com.github.backend_1st.web.dto.auth.SignUpDTO;
 import com.github.backend_1st.web.dto.auth.TokenDTO;
 import lombok.RequiredArgsConstructor;
@@ -40,6 +41,14 @@ public class SignController {
         responseHeaders.set("Authorization", tokenDTO.getAccessToken());
 
         responseMessage.put("message", "로그인이 성공적으로 완료되었습니다.");
+
+        return new ResponseEntity<>(responseMessage, responseHeaders, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/logout")
+    public ResponseEntity<Map<String, String>> login(@RequestBody LogoutDTO logoutDTO) {
+        Map<String, String> responseMessage = authService.logout(logoutDTO);
+        HttpHeaders responseHeaders = new HttpHeaders();
 
         return new ResponseEntity<>(responseMessage, responseHeaders, HttpStatus.OK);
     }
