@@ -18,6 +18,9 @@ import java.util.Map;
         basePackages = {"com.github.backend_1st.repository.users",
                         "com.github.backend_1st.repository.posts",
                         "com.github.backend_1st.repository.comments",
+                        "com.github.backend_1st.repository.roles",
+                        "com.github.backend_1st.repository.userDetails",
+                        "com.github.backend_1st.repository.userPrincipal",
                         "com.github.backend_1st.repository.likes",},
         entityManagerFactoryRef = "entityManagerFactoryBean1"
 )
@@ -33,6 +36,9 @@ public class JpaConfig {
         em.setPackagesToScan("com.github.backend_1st.repository.users",
                             "com.github.backend_1st.repository.posts",
                             "com.github.backend_1st.repository.comments",
+                            "com.github.backend_1st.repository.roles",
+                            "com.github.backend_1st.repository.userDetails",
+                            "com.github.backend_1st.repository.userPrincipal",
                             "com.github.backend_1st.repository.likes");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
