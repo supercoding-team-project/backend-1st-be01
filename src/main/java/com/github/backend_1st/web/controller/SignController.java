@@ -32,17 +32,13 @@ public class SignController {
     }
 
     @PostMapping(value = "/login")
-    public ResponseEntity<Map<String, String>> login(@RequestBody LoginDTO loginRequest) {
+    public ResponseEntity<TokenDTO> login(@RequestBody LoginDTO loginRequest) {
         TokenDTO tokenDTO = authService.login(loginRequest);
-        Map<String, String> responseMessage = new HashMap<>();
 
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("Content-Type", "application/json");
-        responseHeaders.set("Authorization", tokenDTO.getAccessToken());
 
-        responseMessage.put("message", "로그인이 성공적으로 완료되었습니다.");
-
-        return new ResponseEntity<>(responseMessage, responseHeaders, HttpStatus.OK);
+        return new ResponseEntity<>(tokenDTO, responseHeaders, HttpStatus.OK);
     }
 
     @PostMapping(value = "/logout")
