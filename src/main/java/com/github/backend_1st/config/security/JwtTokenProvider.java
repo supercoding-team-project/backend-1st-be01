@@ -73,4 +73,9 @@ public class JwtTokenProvider {
     private String getUserEmail(String jwtToken) {
         return Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(jwtToken).getBody().getSubject();
     }
+    
+    public Integer getUserIdFromToken(String jwtToken) {
+        Claims claims = Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(jwtToken).getBody();
+        return claims.get("userPrincipalId", Integer.class);
+    }
 }

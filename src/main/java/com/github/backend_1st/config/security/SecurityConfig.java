@@ -43,6 +43,7 @@ public class SecurityConfig {
                                 .requestMatchers("/api/logout/**").permitAll()
                                 .requestMatchers( "/api/comments/**").permitAll()
                                 .requestMatchers( "/api/posts/**").permitAll()
+                                .requestMatchers("/api/likes/**").permitAll()
                 )
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
 
