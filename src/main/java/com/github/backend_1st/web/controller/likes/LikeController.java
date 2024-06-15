@@ -12,7 +12,7 @@ import java.util.List;
 public class LikeController {
     private final LikeService likeService;
     @GetMapping("/likes/{commentId}")
-    public LikesResponse findLikeByCommentId(@PathVariable String commentId){
+    public LikeResponse findLikeByCommentId(@PathVariable String commentId){
         List<Likes> likes = likeService.findLikeByCommentId();
         return new LikeResponse(likes);
     }
