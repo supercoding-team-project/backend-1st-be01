@@ -36,6 +36,8 @@ public class LikeController {
         String token = jwtTokenProvider.resolveToken(request);
         if (token != null && jwtTokenProvider.validateToken(token)) {
             Integer userId = jwtTokenProvider.getUserIdFromToken(token); // 사용자 ID 추출
+            System.out.println(token);
+            System.out.println(userId);
             String returnMessage = likeService.saveLike(commentId, userId);
             Map<String, String> response = new HashMap<>();
             response.put("message", returnMessage);
@@ -45,4 +47,17 @@ public class LikeController {
         }
     }
 
+    @DeleteMapping("/likes/{commentId}")
+    public ResponseEntity<Map<String , String>> deleteLike(@PathVariable String commentId , HttpServletRequest request){
+        String token = jwtTokenProvider.resolveToken(request);
+        if (token != null && jwtTokenProvider.validateToken(token)){
+            Integer userId = jwtTokenProvider.getUserIdFromToken(token);
+            String returnMessage = likeService.deleteLike(commentId , userId);
+            Map<String, String> response = new HashMap<>();
+            response.put("message", returnMessage);
+            return ResponseEntity.ok(response);
+        }else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", "Error processing request"));
+        }
+    }
 }
