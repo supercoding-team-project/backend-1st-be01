@@ -40,4 +40,14 @@ public class LikeService {
         likeJpaRepository.save(likeEntity);
         return "like post success";
     }
+
+    public String deleteLike(String commentId,Integer userId) {
+        Integer commentIdInt = Integer.valueOf(commentId);
+        CommentEntity comment = commentJpaRepository.findById(commentIdInt)
+                .orElseThrow(()-> new RuntimeException("Comment can not found"));
+        LikeEntity like = likeJpaRepository.findByCommentIdAndUserId(commentIdInt , userId)
+                .orElseThrow(() -> new RuntimeException("No like found for this user on the specified comment"));
+        likeJpaRepository.delete(like);
+        return "like delete success";
+    }
 }
